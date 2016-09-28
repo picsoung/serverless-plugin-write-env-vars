@@ -52,6 +52,29 @@ That's all! Fill those variables up with any keys and values you want!
 values, so you should make sure they are simple strings that do not have line
 breaks or other characters that would need to be escaped.
 
+## How do I access Env Variables in my code?
+
+You will use [dotenv](https://www.npmjs.com/package/dotenv) package for that.
+
+Install it in your service directory:
+`npm install dotenv --save`
+
+Then load in your code:
+
+`require('dotenv').config();`
+
+You can now access variables you defined in `serverless.yml`
+
+```
+require('dotenv').config();
+
+module.exports.hello = (event, context, cb) => {
+  cb(null, { message: 'This function run on ' +process.env.SERVERLESS_STAGE +' stage.', event });
+};
+```
+
+You can check [dotenv](https://www.npmjs.com/package/dotenv) documentation for more custom options. 
+
 ## How do I contribute?
 
 Easy! Pull requests are welcome! Just do the following:
